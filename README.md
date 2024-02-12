@@ -16,3 +16,5 @@ the login credentials:
 
 If you face any challenges login in, please visit `https://dummyjson.com/users`
 for more login credentials(username and password)
+
+### NB: Most functionalities are available when user is logged in!

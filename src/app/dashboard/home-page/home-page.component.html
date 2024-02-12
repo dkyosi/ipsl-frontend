@@ -1,0 +1,100 @@
+<div class="row clearfix">
+    <!-- Task Info -->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="header">
+                <h2>My Debtors</h2>
+
+                <div class="input-group" style="margin-top: 2rem; max-width: 300px;">
+                    <span class="input-group-addon">
+                        <i class="material-icons">search</i>
+                    </span>
+                    <div class="form-line">
+                        <input type="text" class="form-control date" placeholder="Search by name or email"
+                            [(ngModel)]="searchTerm" (ngModelChange)="searchDebtor()">
+                    </div>
+                </div>
+
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);" class=" waves-effect waves-block"
+                                    routerLink="/main/add-debtor">Add Debtor</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" class=" waves-effect waves-block"
+                                    routerLink="/main/my-listings">
+                                    All My Debtors
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    <table class="table table-hover dashboard-task-infos">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Company</th>
+                                <th>Username</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let debtor of debtors; let i = index"
+                                [ngClass]="{'font-bold text-danger': !debtor?.company?.name}" (click)="viewDebtor(debtor)"
+                                role="button">
+                                <td> <img class="userImage" src="../../../assets/images/user.jpg" alt=""> </td>
+                                <td>{{ debtor?.id }}</td>
+                                <td>{{ debtor?.name }}</td>
+                                <td>{{ debtor?.email }}</td>
+                                <td>{{ debtor?.company?.name }}</td>
+                                <td>{{ debtor?.username }}</td>
+                                <td>{{ debtor?.phone }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div style="display: flex; justify-content: center;" *ngIf="!searchTerm">
+                    <div>
+                        <p>Page {{ currentPage }} of {{ calculateTotalPages() }}</p>
+                        <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+                        <button (click)="nextPage()" [disabled]="currentPage == totalPages">Next</button>
+                      </div>
+                </div>
+
+                <div style="display: flex; justify-content: center;" *ngIf="isFecthingDebtors">
+                    <div class="preloader pl-size-xs">
+                        <div class="spinner-layer pl-purple">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: center;"
+                    *ngIf="!isFecthingDebtors && (!debtors || !debtors.length)">
+                    <div class="alert bg-pink m-5" style="max-width: 600px;">
+                        You have no debtors listed. List some by clicking 'List Debtor'
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #END# Task Info -->
+</div>

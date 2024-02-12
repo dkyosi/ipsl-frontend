@@ -1,0 +1,127 @@
+<div class="row clearfix">
+    <!-- Task Info -->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="header">
+                <h2><strong>Add Debtor</strong></h2>
+            </div>
+            <div class="body">
+
+                <form [formGroup]="debtForm">
+
+                    <p class="font-bold col-purple">All fields marked with '*' are required</p>
+
+                    <label for="debtorName">Debtor Name *</label>
+                    <div class="form-group">
+                        <div class="form-line"
+                            [ngClass]="{'focused error': f.debtorName.errors?.required && submitted}">
+                            <input type="text" id="debtorName" class="form-control" placeholder="Enter debtor name"
+                                formControlName="debtorName" autocomplete="off">
+                        </div>
+                        <label id="debtorName-error" class="error" for="debtorName"
+                            *ngIf="f.debtorName.errors?.required && submitted">Please enter the debtor's name.</label>
+                    </div>
+
+                    <div>
+                        <label for="debtorPhoneNumber">Debtor Phone Number</label>
+                        <div class="form-group">
+                            <div class="form-line"
+                                [ngClass]="{'focused error': f.debtorPhoneNumber.errors?.required && submitted}">
+                                <input type="tel" id="debtorPhoneNumber" class="form-control"
+                                    placeholder="Enter debtor's phone number" formControlName="debtorPhoneNumber"
+                                    autocomplete="off">
+                            </div>
+                            <label id="debtorPhoneNumber-error" class="error" for="debtorPhoneNumber"
+                                *ngIf="f.debtorPhoneNumber.errors?.invalidPhone && submitted">Please enter a valid phone
+                                number.</label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="debtorEmailAdress">Debtor Email Address</label>
+                        <div class="form-group">
+                            <div class="form-line"
+                                [ngClass]="{'focused error': f.debtorEmailAdress.errors?.required && submitted}">
+                                <input type="email" id="debtorEmailAdress" class="form-control"
+                                    placeholder="Enter debtor's email address" formControlName="debtorEmailAdress"
+                                    autocomplete="off">
+                            </div>
+                            <label id="debtorEmailAdress-error" class="error" for="debtorEmailAdress"
+                                *ngIf="f.debtorEmailAdress.errors?.required && submitted">Please enter the debtor's
+                                email address.</label>
+                            <label id="debtorEmailAdress-error" class="error" for="debtorEmailAdress"
+                                *ngIf="f.debtorEmailAdress.errors?.email && submitted">Please enter a valid
+                                email address.</label>
+                        </div>
+                    </div>
+
+                    <label for="username">username *</label>
+                    <div class="form-group">
+                        <div class="form-line"
+                            [ngClass]="{'focused error': f.username.errors?.required && submitted}">
+                            <input type="text" id="username" class="form-control" autocomplete="off"
+                                placeholder="Enter debt username" formControlName="username">
+                        </div>
+                        <label id="username-error" class="error" for="username"
+                            *ngIf="f.username.errors?.required && submitted">Please enter the username.</label>
+                    </div>
+
+    
+
+                    <div class="form-group">
+                        <input type="checkbox" id="termsConditions" class="filled-in" formControlName="termsConditions">
+                        <label for="termsConditions"
+                            [ngClass]="{error: f.termsConditions.errors?.required && submitted}">I
+                            have read the
+                            terms and conditions of using this platform. *</label>
+                        <label class="col-orange" style="margin-top: 10px;">We shall not be held accountable for any
+                            false data provided in this
+                            platform and any legal issues arising from
+                            it.</label>
+                    </div>
+
+
+                    <br>
+
+                    <div style="display: flex; justify-content: center; margin-bottom: 10px; margin-top: 0px;"
+                        *ngIf="isProcessing">
+                        <div class="preloader pl-size-xs">
+                            <div class="spinner-layer pl-purple">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-danger" *ngIf="savingError && !isProcessing">
+                        <strong>Oh snap!</strong> {{savingError}}
+                    </div>
+
+                    <div class="alert alert-success" *ngIf="successMessage && !isProcessing">
+                        <strong>Hurray!</strong> {{successMessage}}
+                    </div>
+
+                    <div style="display: flex; justify-content: flex-end;">
+
+                        <button type="button" class="btn bg-purple btn-lg waves-effect" 
+                            (click)="saveDebtor()"> SAVE
+                        </button>
+
+
+                        &nbsp;&nbsp;
+
+                        <button type="button" class="btn btn-default btn-lg waves-effect"
+                            routerLink="/main/">CANCEL</button>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- #END# Task Info -->
+</div>

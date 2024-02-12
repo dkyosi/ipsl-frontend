@@ -1,0 +1,103 @@
+<div class="row clearfix">
+    <!-- Task Info -->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="header">
+                <h2>Debtor Information</h2>
+
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);" class=" waves-effect waves-block"
+                                    routerLink="/main/add-debtor">Add Debtor</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" class=" waves-effect waves-block"
+                                    routerLink="/main">
+                                    All My Debtors
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <div class="p-1">
+                  <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="h4 text-muted">Debtor Name</div>
+                        <div class="text-muted">{{debtor?.name}}</div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="h4 text-muted">UserName</div>
+                        <div class="text-muted">{{debtor?.username}}</div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="h4 text-muted">Email Address</div>
+                        <div class="text-muted">{{debtor?.email}}</div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="mt-1">Address Information</div>
+                  <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="h4 text-muted">Street</div>
+                        <div class="text-muted">{{debtor?.address?.street}}</div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="h4 text-muted">Suite</div>
+                        <div class="text-muted">{{debtor?.address?.suite}}</div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="h4 text-muted">City</div>
+                        <div class="text-muted">{{debtor?.address?.city}}</div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="mt-1">Company Details</div>
+                  <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="h4 text-muted">Company Name</div>
+                        <div class="text-muted">{{debtor?.company?.name}}</div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="h4 text-muted">Catchphrase</div>
+                        <div class="text-muted">{{debtor?.company?.catchPhrase}}</div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="h4 text-muted">Business</div>
+                        <div class="text-muted">{{debtor?.company?.bs}}</div>
+                    </div>
+                  </div>
+
+                </div>
+
+
+                <div style="display: flex; justify-content: center;" *ngIf="isFecthingDebtors">
+                    <div class="preloader pl-size-xs">
+                        <div class="spinner-layer pl-purple">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: center;"
+                    *ngIf="!isFecthingDebtors && (!debtor)">
+                    <div class="alert bg-pink m-5" style="max-width: 600px;">
+                        Could not fetch debtor!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #END# Task Info -->
+</div>
